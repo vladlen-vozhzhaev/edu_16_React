@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import {BrowserRouter, Link, NavLink, Route} from "react-router-dom";
 import {AddArticle} from "./components/AddArticle";
+import {MainPage} from "./components/MainPage";
+import {Article} from "./components/Article";
 
 function Menu(){
   return (
@@ -38,10 +40,13 @@ function App() {
         <Menu/>
         <div className="container py-5">
           <Route exact path="/">
-            <Link className="btn btn-primary" to="/addArticle">Добавить статью</Link>
+            <MainPage/>
           </Route>
           <Route path="/addArticle">
             <AddArticle/>
+          </Route>
+          <Route path="/blog">
+            <Article/>
           </Route>
           <Route path="/auth">
             <h1 className="text-center my-3">Вход на сайт</h1>
