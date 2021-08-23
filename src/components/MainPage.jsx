@@ -7,7 +7,22 @@ function Tr(props){
             <th scope="row">{props.index}</th>
             <td><Link to={`/blog/${props.id}`}>{props.title}</Link></td>
             <td>{props.author}</td>
-            <td><span>[удалить]</span></td>
+            <td><span onClick={function (){
+                const fromData = new FormData();
+                fromData.append("id", props.id);
+                fetch("http://16.vozhzhaev.ru/php/handlerDeleteArticleById.php",{
+                    method: "POST",
+                    cors: "no-cors",
+                    body: fromData
+                }).then(response=>response.json())
+                    .then(result=>{
+                        console.log(result);
+                        if(result.result = "success"){
+                            props.loadMainPageContent();
+                        }
+                    })
+            }} style={{cursor: "pointer", color: "red"}}>[удалить]</span>
+            <Link to={"/edit/"+props.id}>[Редактировать]</Link></td>
         </tr>
     )
 }
@@ -19,8 +34,8 @@ export class MainPage extends React.Component{
             articles: []
         }
     }
-    componentDidMount() {
-        console.log("Вызван метод componentDidMount()");
+
+    loadMainPageContent(){ // Сами придумали
         fetch("http://16.vozhzhaev.ru/php/handlerGetArticles.php")
             .then(response=>response.json())
             .then(result=>{
@@ -33,12 +48,18 @@ export class MainPage extends React.Component{
                         title={result[i].title}
                         author={result[i].author}
                         id={result[i].id}
+                        loadMainPageContent={this.loadMainPageContent.bind(this)}
                     />);
                 }
+                console.log(this);
                 this.setState({
                     articles: articles
                 })
             });
+    }
+
+    componentDidMount() {
+        this.loadMainPageContent();
     }
 
     render() {

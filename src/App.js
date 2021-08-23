@@ -4,6 +4,7 @@ import {BrowserRouter, Link, NavLink, Route} from "react-router-dom";
 import {AddArticle} from "./components/AddArticle";
 import {MainPage} from "./components/MainPage";
 import {Article} from "./components/Article";
+import {EditArticle} from "./components/EditArticle";
 
 function Menu(){
   return (
@@ -47,6 +48,9 @@ function App() {
           </Route>
           <Route path="/blog">
             <Article/>
+          </Route>
+          <Route path="/edit">
+            <EditArticle/>
           </Route>
           <Route path="/auth">
             <h1 className="text-center my-3">Вход на сайт</h1>
