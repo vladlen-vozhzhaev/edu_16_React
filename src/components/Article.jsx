@@ -1,4 +1,5 @@
 import React from "react";
+import {host} from "../config";
 
 export class Article extends React.Component{
     constructor() {
@@ -12,7 +13,7 @@ export class Article extends React.Component{
         const id = window.location.pathname.split("/")[2]; // Достаём идентификатор статьи их URL
         const formData = new FormData(); // formData - в него положим id для отправки на сервер
         formData.append('id',id); // кладём id в formData
-        fetch("http://16.vozhzhaev.ru/php/handlerGetArticleById.php",{
+        fetch(host+"/php/handlerGetArticleById.php",{
             method: "POST",
             cors: "no-cors",
             body: formData
@@ -30,7 +31,7 @@ export class Article extends React.Component{
         return (
           <div>
               <h1 className="mb-5">{this.state.title}</h1>
-              <p>{this.state.content}</p>
+              <div dangerouslySetInnerHTML={{__html: this.state.content}}/>
           </div>
         );
     }

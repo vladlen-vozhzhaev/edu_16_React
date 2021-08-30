@@ -1,4 +1,5 @@
 import React from "react";
+import {host} from "../config";
 
 export class EditArticle extends React.Component{
     constructor() {
@@ -16,7 +17,7 @@ export class EditArticle extends React.Component{
         const id = window.location.pathname.split('/')[2];
         const formData = new FormData();
         formData.append("id",id);
-        fetch("http://16.vozhzhaev.ru/php/handlerGetArticleById.php",{
+        fetch(host+"/php/handlerGetArticleById.php",{
             method: "POST",
             cors: "no-cors",
             body: formData
@@ -45,7 +46,7 @@ export class EditArticle extends React.Component{
         formData.append("title", this.state.title);
         formData.append("content", this.state.content);
         formData.append("author", this.state.author);
-        fetch("http://16.vozhzhaev.ru/php/handlerUpdateArticleById.php",{
+        fetch(host+"/php/handlerUpdateArticleById.php",{
             method: "POST",
             cors: "no-cors",
             body: formData

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import {host} from "../config";
 
 function Tr(props){
     return (
@@ -10,7 +11,7 @@ function Tr(props){
             <td><span onClick={function (){
                 const fromData = new FormData();
                 fromData.append("id", props.id);
-                fetch("http://16.vozhzhaev.ru/php/handlerDeleteArticleById.php",{
+                fetch(host+"/php/handlerDeleteArticleById.php",{
                     method: "POST",
                     cors: "no-cors",
                     body: fromData
@@ -36,7 +37,7 @@ export class MainPage extends React.Component{
     }
 
     loadMainPageContent(){ // Сами придумали
-        fetch("http://16.vozhzhaev.ru/php/handlerGetArticles.php")
+        fetch(host+"/php/handlerGetArticles.php")
             .then(response=>response.json())
             .then(result=>{
                 console.log(result);

@@ -5,6 +5,8 @@ import {AddArticle} from "./components/AddArticle";
 import {MainPage} from "./components/MainPage";
 import {Article} from "./components/Article";
 import {EditArticle} from "./components/EditArticle";
+import {Auth} from "./components/Auth";
+import {Reg} from "./components/Reg";
 
 function Menu(){
   return (
@@ -53,44 +55,10 @@ function App() {
             <EditArticle/>
           </Route>
           <Route path="/auth">
-            <h1 className="text-center my-3">Вход на сайт</h1>
-            <div className="col-sm-5 mx-auto">
-              <form onSubmit="sendForm(this); return false;">
-                <div className="mb-3">
-                  <input name="email" type="email" className="form-control" placeholder="E-mail (Логин)"/>
-                </div>
-                <div className="mb-3">
-                  <input name="pass" type="password" className="form-control" placeholder="Пароль"/>
-                </div>
-                <p id="info" hidden>Логин или пароль введён неверно!</p>
-                <div className="mb-3">
-                  <input type="submit" className="form-control btn btn-primary" value="Войти"/>
-                </div>
-              </form>
-            </div>
+            <Auth/>
           </Route>
           <Route path="/reg">
-            <h1 className="text-center my-3">Регистрация на сайте</h1>
-            <div className="col-sm-5 mx-auto">
-              <form action="/php/handlerReg.php" onSubmit="sendForm(this); return false;" method="POST">
-                <div className="mb-3">
-                  <input name="name" type="text" className="form-control" placeholder="Имя"/>
-                </div>
-                <div className="mb-3">
-                  <input name="lastname" type="text" className="form-control" placeholder="Фамилия"/>
-                </div>
-                <div className="mb-3">
-                  <input name="email" type="email" className="form-control" placeholder="E-mail (Логин)"/>
-                </div>
-                <div className="mb-3">
-                  <input name="pass" type="password" className="form-control" placeholder="Пароль"/>
-                </div>
-                <p id="info" hidden>Такой пользователь уже есть</p>
-                <div className="mb-3">
-                  <input type="submit" className="form-control btn btn-primary" value="Зарегистрироваться"/>
-                </div>
-              </form>
-            </div>
+            <Reg/>
           </Route>
         </div>
       </BrowserRouter>
